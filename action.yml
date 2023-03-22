@@ -1,0 +1,19 @@
+name: "Trigger Hightouch Sync"
+description: "This action asynchronously triggers a Hightouch sync based on a sync ID."
+inputs:
+  sync-id:
+    description: "The ID of the sync you wish to trigger"
+    required: true
+runs:
+  steps:
+    - name: Check for valid API key
+      id: check-api-key
+      if: env.HIGHTOUCH_API_KEY
+      run:
+    - name: Trigger sync via Hightouch API
+      id: trigger-sync
+      if: inputs.sync-id
+      run: |
+        curl --location -g --request POST 'https://api.hightouch.com/api/v1/syncs/${{ vars.HIGHTOUCH_SYNC_ID }}/trigger' --header 'Authorization: Bearer ${{ env.HIGHTOUCH_API_KEY }}'
+
+# TODO - Add polling step to check if sync succeeded
