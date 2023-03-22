@@ -1,5 +1,8 @@
 name: "Trigger Hightouch Sync"
 description: "This action asynchronously triggers a Hightouch sync based on a sync ID."
+branding:
+  icon: "refresh-ccw"
+  color: "green"
 inputs:
   sync-id:
     description: "The ID of the sync you wish to trigger"
