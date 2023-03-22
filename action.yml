@@ -17,6 +17,6 @@ runs:
       id: trigger-sync
       if: inputs.sync-id
       run: |
-        curl --location -g --request POST 'https://api.hightouch.com/api/v1/syncs/${{ inputs.sync-id }}/trigger' --header 'Authorization: Bearer ${{ env.HIGHTOUCH_API_KEY }}'
+        curl --location --fail -g --request POST 'https://api.hightouch.com/api/v1/syncs/${{ inputs.sync-id }}/trigger' --header 'Authorization: Bearer ${{ env.HIGHTOUCH_API_KEY }}'
 
 # TODO - Add polling step to check if sync succeeded
