@@ -14,7 +14,7 @@ N/A
 
 ### Environment variables
 
-`HIGHTOUCH_API_KEY`: The API key for the workspace the sync belongs to. You can create on in Settings > API keys in the Hightouch app.
+`HIGHTOUCH_API_KEY`: The API key for the workspace the sync belongs to. You can create one in Settings > API keys in the Hightouch app.
 
 ## Example
 
