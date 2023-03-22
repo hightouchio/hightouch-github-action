@@ -9,7 +9,7 @@ runs:
     - name: Check for valid API key
       shell: bash
       id: check-api-key
-      if: env.HIGHTOUCH_API_KEY == ""
+      if: env.HIGHTOUCH_API_KEY == 0
       run: exit 1
     - name: Trigger sync via Hightouch API
       shell: bash
