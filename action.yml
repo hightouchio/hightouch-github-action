@@ -5,6 +5,7 @@ inputs:
     description: "The ID of the sync you wish to trigger"
     required: true
 runs:
+  using: composite
   steps:
     - name: Check for valid API key
       shell: bash
