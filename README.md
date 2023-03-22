@@ -6,7 +6,13 @@ This Github action allows users to trigger a Hightouch sync with a sync ID via t
 
 ### Inputs
 
+Each step can use either a sync ID or a sync slug.
+
 `sync-id`: The ID of the sync you wish to trigger. You can find this in the Hightouch UI on the sync page.
+
+`sync-slug`: The slug of the sync you wish to trigger. You can find this in the Hightouch UI on the sync page.
+
+`full-resync` (optional): Whether to resync all the rows in the query (i.e. ignoring previously synced rows). Default = `false`.
 
 ### Environment variables
 
@@ -50,5 +56,5 @@ jobs:
         sync-id: 10000 
     - uses: hightouchio/hightouch-github-action@v1.0.1
       with:
-        sync-id: 20000
+        sync-slug: "all-users-to-salesforce"
 ```

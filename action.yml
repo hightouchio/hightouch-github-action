@@ -6,7 +6,14 @@ branding:
 inputs:
   sync-id:
     description: "The ID of the sync you wish to trigger"
-    required: true
+    required: false
+  sync-slug:
+    description: "The slug of the sync you wish to trigger"
+    required: false
+  full-resync:
+    description: "Whether to resync all the rows in the query (i.e. ignoring previously synced rows)"
+    required: false
+    default: "false"
 runs:
   using: composite
   steps:
@@ -15,11 +22,18 @@ runs:
       id: check-api-key
       if: env.HIGHTOUCH_API_KEY == 0
       run: exit 1
-    - name: Trigger sync via Hightouch API
+    - name: Trigger sync via Hightouch API via sync ID
       shell: bash
-      id: trigger-sync
+      id: trigger-sync-w-id
       if: inputs.sync-id
       run: |
-        curl --location --fail -g --request POST 'https://api.hightouch.com/api/v1/syncs/${{ inputs.sync-id }}/trigger' --header 'Authorization: Bearer ${{ env.HIGHTOUCH_API_KEY }}'
+        curl --location --fail -g --request POST 'https://api.hightouch.com/api/v1/syncs/trigger' --header 'Authorization: Bearer ${{ env.HIGHTOUCH_API_KEY }}' --header 'Content-Type: application/json' --data-raw '{ "syncId": "${{ inputs.sync-id }}", "fullResync": "${{ inputs.full-resync }}" }'
+    - name: Trigger sync via Hightouch API via slug
+      shell: bash
+      id: trigger-sync-w-slug
+      if: inputs.sync-slug
+      run: |
+        curl --location --fail -g --request POST 'https://api.hightouch.com/api/v1/syncs/trigger' --header 'Authorization: Bearer ${{ env.HIGHTOUCH_API_KEY }}' --header 'Content-Type: application/json' --data-raw '{ "syncSlug": "${{ inputs.sync-slug }}", "fullResync": "${{ inputs.full-resync }}" }'
+
 
 # TODO - Add polling step to check if sync succeeded
