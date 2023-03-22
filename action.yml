@@ -8,12 +8,12 @@ runs:
   steps:
     - name: Check for valid API key
       id: check-api-key
-      if: env.HIGHTOUCH_API_KEY
-      run:
+      if: !env.HIGHTOUCH_API_KEY
+      run: exit 1
     - name: Trigger sync via Hightouch API
       id: trigger-sync
       if: inputs.sync-id
       run: |
-        curl --location -g --request POST 'https://api.hightouch.com/api/v1/syncs/${{ vars.HIGHTOUCH_SYNC_ID }}/trigger' --header 'Authorization: Bearer ${{ env.HIGHTOUCH_API_KEY }}'
+        curl --location -g --request POST 'https://api.hightouch.com/api/v1/syncs/${{ inputs.sync-id }}/trigger' --header 'Authorization: Bearer ${{ env.HIGHTOUCH_API_KEY }}'
 
 # TODO - Add polling step to check if sync succeeded
