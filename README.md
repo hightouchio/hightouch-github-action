@@ -42,7 +42,7 @@ jobs:
         sync-id: ${{ vars.HIGHTOUCH_SYNC_ID }}
 ```
 
-## Handling Multiple Syncs
+## Handling multiple syncs
 
 Include additional steps in the job to trigger multiple syncs with multiple sync IDs.
 ```
@@ -57,4 +57,5 @@ jobs:
     - uses: hightouchio/hightouch-github-action@v1.0.1
       with:
         sync-slug: "all-users-to-salesforce"
+        full-resync: "true"
 ```
