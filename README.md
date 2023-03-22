@@ -1,12 +1,12 @@
 # Hightouch Github Action
 
-This Github action allows users to trigger a Hightouch sync with a sync ID via the Hightouch API. Use it in your workflows to
+This Github action allows users to trigger a Hightouch sync with a sync ID via the Hightouch API. Use it in your workflows to automate Hightouch syncs in your pipelines.
 
 ## Usage
 
 ### Inputs
 
-`sync-id`: The ID of the sync you wish to trigger. You can find this in the Hightouch UI in the sync page.
+`sync-id`: The ID of the sync you wish to trigger. You can find this in the Hightouch UI on the sync page.
 
 ### Outputs
 
