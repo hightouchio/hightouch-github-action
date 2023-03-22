@@ -8,7 +8,7 @@ runs:
   steps:
     - name: Check for valid API key
       id: check-api-key
-      if: !env.HIGHTOUCH_API_KEY
+      if: env.HIGHTOUCH_API_KEY == ""
       run: exit 1
     - name: Trigger sync via Hightouch API
       id: trigger-sync
