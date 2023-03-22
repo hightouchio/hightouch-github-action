@@ -7,10 +7,12 @@ inputs:
 runs:
   steps:
     - name: Check for valid API key
+      shell: bash
       id: check-api-key
       if: env.HIGHTOUCH_API_KEY == ""
       run: exit 1
     - name: Trigger sync via Hightouch API
+      shell: bash
       id: trigger-sync
       if: inputs.sync-id
       run: |
